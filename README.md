@@ -1,3 +1,21 @@
+原项目地址: https://github.com/guanzhi/GmSSL
+
+官方网站: http://gmssl.org/  文档有点老了
+
+go常用的加解密库: https://github.com/deatil/go-cryptobin
+
+国密证书实验室: https://www.gmssl.cn/gmssl/index.jsp 各种工具集以及相关链接
+
+开发版本是3.1.1，原项目主分支是3.1.2dev。原项目存在skid和akid生成一致的小bug，有dalao提交了pr，但一直没有被审查合并，这里单独留档修改并提供可执行文件。
+
+```c
+  // tools/resign.c 
+  x509_exts_add_subject_key_identifier_ex(exts, &extslen, sizeof(exts), -1, &sm2_key) // 改为
+  x509_exts_add_subject_key_identifier_ex(exts, &extslen, sizeof(exts), -1, &subject_public_key)
+```
+
+
+
 # GmSSL
 
 [![CMake](https://github.com/guanzhi/GmSSL/workflows/CMake/badge.svg)](https://github.com/guanzhi/GmSSL/actions/workflows/cmake.yml)
